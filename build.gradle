@@ -37,10 +37,12 @@ locations_of_cucumber_steps.each {kind_of_testing ->
 }
 
 dependencies {
-	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '2.3.0'
+	compile group: 'org.codehaus.groovy', name: 'groovy', version: '2.3.0'
         //due to a bug in Gradle: http://issues.gradle.org/browse/GRADLE-732
         cucumberRuntime files("${jar.archivePath}")
 	testCompile 'junit:junit:4.11'
 	testCompile 'info.cukes:cucumber-groovy:1.1.8'
 	testCompile 'info.cukes:cucumber-junit:1.1.8'
+        testCompile 'org.gebish:geb-core:0.9.3'
+        testCompile 'org.seleniumhq.selenium:selenium-firefox-driver:2.42.2'
 }
