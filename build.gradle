@@ -18,7 +18,7 @@ ext {
 }
 
 
-
+//TODO: read the locations from the path for steps, is not necessary to declare it
 locations_of_cucumber_steps.each {kind_of_testing ->
   task("cucumber_$kind_of_testing")  {
       description "Run over feature behaviours according to the steps defined to access the application using the $kind_of_testing."
