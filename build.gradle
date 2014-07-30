@@ -14,21 +14,20 @@ configurations {
 }
 
 ext {
-   locations_of_cucumber_steps=['interface','services']
+   steps_definition_path='src/test/steps/'
+   different_cucumber_steps=file(steps_definition_path).listFiles().collect{it.name}
 }
 
 
-//TODO: read the locations from the path for steps, is not necessary to declare it
-locations_of_cucumber_steps.each {kind_of_testing ->
+different_cucumber_steps.each {kind_of_testing ->
   task("cucumber_$kind_of_testing")  {
-      description "Run over feature behaviours according to the steps defined to access the application using the $kind_of_testing."
+      description "Run over feature behaviours according to the steps defined to access the application using the $kind_of_testing"
       dependsOn assemble
       doLast {
           javaexec {
               main = "cucumber.api.cli.Main"
               classpath = configurations.cucumberRuntime
-              //args = ['-f', "pretty", '-f', "html:build/reports/cucumber",  '--strict',''--glue','src/test/steps', 'src/test/cucumber' ]
-              args = ['-f', "pretty", '-f', "html:build/reports/cucumber",  '--glue',"src/test/steps/$kind_of_testing", 'src/test/cucumber' ]
+              args = ['-f', "pretty", '-f', "html:build/reports/cucumber",  '--glue',"$steps_definition_path/$kind_of_testing", 'src/test/cucumber' ]
   
           }
       }
