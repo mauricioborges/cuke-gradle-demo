@@ -1,7 +1,10 @@
-@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7')
-@Grab(group='oauth.signpost', module='signpost-core', version='1.2.1.2')
-@Grab(group='oauth.signpost', module='signpost-commonshttp4', version='1.2.1.2')
+import static cucumber.api.groovy.EN.*
 
+this.metaClass.mixin(cucumber.api.groovy.Hooks)
+this.metaClass.mixin(cucumber.api.groovy.EN)
+
+ 
+	 
 import groovyx.net.http.RESTClient
 import static groovyx.net.http.ContentType.*
 
@@ -11,6 +14,7 @@ def twitter = new RESTClient( 'https://api.twitter.com/1.1/search/tweets.json' )
 def existing_hashtag="#TRILHATESTES"
 def hashtag=null
 def resp=null
+
 Given(~/^that I want to search for tweets related to an existing hashtag$/) { ->
 	hashtag=existing_hashtag
 }
