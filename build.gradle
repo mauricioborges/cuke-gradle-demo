@@ -27,7 +27,7 @@ different_cucumber_steps.each {kind_of_testing ->
           javaexec {
               main = "cucumber.api.cli.Main"
               classpath = configurations.cucumberRuntime
-              args = ['-f', "pretty", '-f', "html:build/reports/cucumber",  '--glue',"$steps_definition_path/$kind_of_testing", 'src/test/cucumber' ]
+              args = ['--strict', '-f', "pretty", '-f', "html:build/reports/cucumber",  '--glue',"$steps_definition_path/$kind_of_testing", 'src/test/cucumber' ]
   
           }
       }
